@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BeautyShop.Models.Entitties
 {
-    public class ProductEntity
+    public class Product
     {
         [Key]
         public int Id { get; set; }
@@ -21,6 +21,6 @@ namespace BeautyShop.Models.Entitties
         public int StockQuantity { get; set; }
         public string ImageUrl { get; set; }
         public DateTime CreatedAt { get; set; }
-        public List<ProductReviewEntity> Reviews { get; set; }
+        public List<ProductReview> Reviews { get; set; }
     }
 }

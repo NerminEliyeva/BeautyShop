@@ -10,7 +10,7 @@ namespace BeautyShop.DAL.Abstract.IRepository
     {
         IEnumerable<T> GetAll();
         T GetById(int id);
-        void Insert(T entity);
+        void Add<T>(T entity) where T : class;
         void Save();
     }
 }

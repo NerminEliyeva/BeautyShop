@@ -61,9 +61,9 @@ namespace BeautyShop.DAL.Migrations
                 name: "ProductReview",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ReviewId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AuthorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AuthorName = table.Column<int>(type: "int", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -71,7 +71,7 @@ namespace BeautyShop.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductReview", x => x.Id);
+                    table.PrimaryKey("PK_ProductReview", x => x.ReviewId);
                     table.ForeignKey(
                         name: "FK_ProductReview_Product_ProductEntityId",
                         column: x => x.ProductEntityId,

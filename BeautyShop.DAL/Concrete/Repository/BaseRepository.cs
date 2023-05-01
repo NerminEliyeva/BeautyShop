@@ -27,7 +27,7 @@ namespace BeautyShop.DAL.Concrete.Repository
             return _beautyShopDbContext.Set<T>().Find(id);
         }
 
-        public void Insert(T entity)
+        public void Add<T>(T entity) where T : class
         {
             _beautyShopDbContext.Set<T>().Add(entity);
         }
@@ -36,5 +36,6 @@ namespace BeautyShop.DAL.Concrete.Repository
         {
             _beautyShopDbContext.SaveChanges();
         }
+
     }
 }

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BeautyShop.Models.Entitties
 {
-    public class CategoryEntity
+    public class Brand
     {
         [Key]
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        public int BrandId { get; set; }
+        public string BrandName { get; set; }
     }
 }

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BeautyShop.Models.Entitties
 {
-    public class ProductReviewEntity
+    public class ProductReview
     {
         [Key]
-        public int Id { get; set; }
-        public string AuthorName { get; set; }
+        public int ReviewId { get; set; }
+        public int AuthorName { get; set; }
         public string Content { get; set; }
         public int Rating { get; set; }
         public DateTime CreatedAt { get; set; }

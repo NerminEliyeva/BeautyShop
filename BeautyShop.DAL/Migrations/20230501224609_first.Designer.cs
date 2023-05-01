@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautyShop.DAL.Migrations
 {
     [DbContext(typeof(BeautyShopDbContext))]
-    [Migration("20230501220933_first")]
+    [Migration("20230501224609_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace BeautyShop.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.BrandEntity", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entitties.Brand", b =>
                 {
                     b.Property<int>("BrandId")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace BeautyShop.DAL.Migrations
                     b.ToTable("Brand");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.CategoryEntity", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entitties.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace BeautyShop.DAL.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.ProductEntity", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entitties.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,17 +99,16 @@ namespace BeautyShop.DAL.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.ProductReviewEntity", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entitties.ProductReview", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ReviewId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewId"));
 
-                    b.Property<string>("AuthorName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AuthorName")
+                        .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -124,21 +123,21 @@ namespace BeautyShop.DAL.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ReviewId");
 
                     b.HasIndex("ProductEntityId");
 
                     b.ToTable("ProductReview");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.ProductReviewEntity", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entitties.ProductReview", b =>
                 {
-                    b.HasOne("BeautyShop.Models.Entitties.ProductEntity", null)
+                    b.HasOne("BeautyShop.Models.Entitties.Product", null)
                         .WithMany("Reviews")
                         .HasForeignKey("ProductEntityId");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.ProductEntity", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entitties.Product", b =>
                 {
                     b.Navigation("Reviews");
                 });
