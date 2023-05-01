@@ -10,4 +10,8 @@
     <Folder Include="Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BeautyShop.DAL\BeautyShop.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

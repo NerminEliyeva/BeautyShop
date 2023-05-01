@@ -7,10 +7,12 @@ namespace BeautyShop.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        [HttpGet]
+        [HttpPost]
         public int TEst()
         {
             return 0;
         }
+
     }
+
 }

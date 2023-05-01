@@ -14,6 +14,8 @@ namespace BeautyShop.DAL.Concrete.Entity
         {
         }
 
+        public DbSet<BrandEntity> Brand { get; set; }
+        public DbSet<CategoryEntity> Category { get; set; }
         public DbSet<ProductEntity> Product { get; set; }
         public DbSet<ProductReviewEntity> ProductReview { get; set; }
     }
