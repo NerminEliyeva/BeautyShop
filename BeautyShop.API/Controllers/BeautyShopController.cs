@@ -16,7 +16,6 @@ namespace BeautyShop.API.Controllers
             _beautyShopService = beautyShopService;
         }
 
-
         [HttpPost("AddCategory")]
         public bool AddCategory(CategoryDto category)
         {

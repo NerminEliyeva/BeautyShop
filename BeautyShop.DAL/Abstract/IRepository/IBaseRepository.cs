@@ -8,9 +8,12 @@ namespace BeautyShop.DAL.Abstract.IRepository
 {
     public interface IBaseRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
-        T GetById(int id);
-        void Add<T>(T entity) where T : class;
+        Task<IEnumerable<T>> GetAll();
+        Task<T> GetById(int id);
+        Task Add<K>(T entity) where K : class;
         void Save();
+
+        void Delete(T entity);
+        void Update(T entity);
     }
 }

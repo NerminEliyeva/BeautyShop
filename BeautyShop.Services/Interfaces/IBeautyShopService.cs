@@ -1,5 +1,6 @@
 ﻿using BeautyShop.Models.Entitties;
 using BeautyShop.Models.Request;
+using BeautyShop.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BeautyShop.Services.Interfaces
 {
     public interface IBeautyShopService
     {
-        bool AddCategory(CategoryDto category);
-        bool AddBrand(BrandDto brand);
+        Task<BaseResponseModel<bool>> AddCategory(CategoryDto category);
+        BaseResponseModel<bool> AddBrand(BrandDto brand);
     }
 }
