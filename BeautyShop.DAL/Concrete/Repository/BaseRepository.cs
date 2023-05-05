@@ -17,7 +17,7 @@ namespace BeautyShop.DAL.Concrete.Repository
             _beautyShopDbContext = beautyShopDbContext;
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T?> GetById(int id)
         {
             return await _beautyShopDbContext.Set<T>().FindAsync(id);
         }
@@ -27,7 +27,7 @@ namespace BeautyShop.DAL.Concrete.Repository
             return await _beautyShopDbContext.Set<T>().ToListAsync();
         }
 
-        public async Task Add<K>(T entity) where K : class
+        public async Task Add(T entity)
         {
             await _beautyShopDbContext.Set<T>().AddAsync(entity);
         }
@@ -42,9 +42,5 @@ namespace BeautyShop.DAL.Concrete.Repository
             _beautyShopDbContext.Set<T>().Update(entity);
         }
 
-        public void Save()
-        {
-            _beautyShopDbContext.SaveChanges();
-        }
     }
 }

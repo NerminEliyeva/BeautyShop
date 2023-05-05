@@ -1,5 +1,6 @@
 ﻿using BeautyShop.Models.Entitties;
 using BeautyShop.Models.Request;
+using BeautyShop.Models.Response;
 using BeautyShop.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,16 +18,24 @@ namespace BeautyShop.API.Controllers
         }
 
         [HttpPost("AddCategory")]
-        public bool AddCategory(CategoryDto category)
+        public async Task<BaseResponseModel<bool>> AddCategory(CategoryDto category)
         {
-            return _beautyShopService.AddCategory(category);
+            return await _beautyShopService.AddCategory(category);
         }
         [HttpPost("AddBrand")]
-        public bool AddBrand(BrandDto brand)
+        public async Task<BaseResponseModel<bool>> AddBrand(BrandDto brand)
         {
-            return _beautyShopService.AddBrand(brand);
+            return await _beautyShopService.AddBrand(brand);
         }
-
+        [HttpPost("DeleteCategory")]
+        public async Task<BaseResponseModel<bool>> DeleteCategory(int categoryId)
+        {
+            return await _beautyShopService.DeleteCategory(categoryId);
+        }
+        [HttpPost("DeleteBrand")]
+        public async Task<BaseResponseModel<bool>> DeleteBrand(int brandId)
+        {
+            return await _beautyShopService.DeleteCategory(brandId);
+        }
     }
-
 }

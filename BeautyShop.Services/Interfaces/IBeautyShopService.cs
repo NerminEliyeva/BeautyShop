@@ -12,6 +12,8 @@ namespace BeautyShop.Services.Interfaces
     public interface IBeautyShopService
     {
         Task<BaseResponseModel<bool>> AddCategory(CategoryDto category);
-        BaseResponseModel<bool> AddBrand(BrandDto brand);
+        Task<BaseResponseModel<bool>> AddBrand(BrandDto brand);
+        Task<BaseResponseModel<bool>> DeleteCategory(int categoryId);
+        Task<BaseResponseModel<bool>> DeleteBrand(int brandId);
     }
 }

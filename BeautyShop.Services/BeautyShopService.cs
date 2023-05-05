@@ -14,15 +14,14 @@ namespace BeautyShop.Services
 {
     public class BeautyShopService : IBeautyShopService
     {
-        private IProductRepository _productRepository;
-        public BeautyShopService(IProductRepository productRepository)
+        private readonly IRepositoryWrapper _repository;
+        public BeautyShopService(IRepositoryWrapper repository)
         {
-            _productRepository = productRepository;
-        }   
-
+            _repository = repository;
+        }
         public async Task<BaseResponseModel<bool>> AddCategory(CategoryDto category)
         {
-            BaseResponseModel<bool> result = new BaseResponseModel<bool>();
+            var result = new BaseResponseModel<bool>();
             try
             {
                 if (string.IsNullOrWhiteSpace(category.CategoryName) || string.IsNullOrEmpty(category.CategoryName))
@@ -38,8 +37,8 @@ namespace BeautyShop.Services
                     CategoryName = category.CategoryName,
                 };
 
-               await _productRepository.Add<Category>(newCategory);
-                _productRepository.Save();
+                await _repository.Category.Add(newCategory);
+                 _repository.Save();
 
                 result.IsSuccess = true;
                 result.Obj = true;
@@ -54,10 +53,9 @@ namespace BeautyShop.Services
                 return result;
             }
         }
-
-        public BaseResponseModel<bool> AddBrand(BrandDto brand)
+        public async Task<BaseResponseModel<bool>> AddBrand(BrandDto brand)
         {
-            BaseResponseModel<bool> result = new BaseResponseModel<bool>();
+            var result = new BaseResponseModel<bool>();
             try
             {
                 if (string.IsNullOrWhiteSpace(brand.BrandName) || string.IsNullOrEmpty(brand.BrandName))
@@ -73,8 +71,8 @@ namespace BeautyShop.Services
                     BrandName = brand.BrandName
                 };
 
-                _productRepository.Add(newBrand);
-                _productRepository.Save();
+                await _repository.Brand.Add(newBrand);
+                _repository.Save();
 
                 result.IsSuccess = true;
                 result.Obj = true;
@@ -89,7 +87,89 @@ namespace BeautyShop.Services
                 return result;
             }
         }
+        public async Task<BaseResponseModel<bool>> DeleteCategory(int categoryId)
+        {
+            var result = new BaseResponseModel<bool>();
+            try
+            {
+                if (categoryId > 0)
+                {
+                    var categoryDetails = await _repository.Category.GetById(categoryId);
+                    if (categoryDetails != null)
+                    {
+                        _repository.Category.Delete(categoryDetails);
+                        var count = _repository.Save();
 
+                        if (count > 0)
+                        {
+                            result.IsSuccess = true;
+                            result.Obj = true;
+                            result.Message = "Kateqoriya silindi";
+                            return result;
+                        }
+                        else
+                        {
+                            result.IsSuccess = false;
+                            result.Obj = false;
+                            result.Message = "Kateqoriya tapılmadı";
+                            return result;
+                        }
+                    }
+                }
+                result.IsSuccess = false;
+                result.Obj = false;
+                result.Message = "Kateqoriya tapılmadı";
+                return result;
+            }
+            catch (Exception)
+            {
+                result.IsSuccess = false;
+                result.Obj = false;
+                result.Message = "Xəta baş verdi";
+                return result;
+            }
+        }
+        public async Task<BaseResponseModel<bool>> DeleteBrand(int brandId)
+        {
+            var result = new BaseResponseModel<bool>();
+            try
+            {
+                if (brandId > 0)
+                {
+                    var brendDetails = await _repository.Brand.GetById(brandId);
+                    if (brendDetails != null)
+                    {
+                        _repository.Brand.Delete(brendDetails);
+                        var count = _repository.Save();
 
+                        if (count > 0)
+                        {
+                            result.IsSuccess = true;
+                            result.Obj = true;
+                            result.Message = "Brend silindi";
+                            return result;
+                        }
+                        else
+                        {
+                            result.IsSuccess = false;
+                            result.Obj = false;
+                            result.Message = "Brend tapılmadı";
+                            return result;
+                        }
+                    }
+                }
+                result.IsSuccess = false;
+                result.Obj = false;
+                result.Message = "Brend tapılmadı";
+                return result;
+            }
+            catch (Exception)
+            {
+                result.IsSuccess = false;
+                result.Obj = false;
+                result.Message = "Xəta baş verdi";
+                return result;
+            }
+        }
     }
 }
