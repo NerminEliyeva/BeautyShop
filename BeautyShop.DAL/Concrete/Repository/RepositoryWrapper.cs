@@ -10,48 +10,25 @@ namespace BeautyShop.DAL.Concrete.Repository
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
-        private BeautyShopDbContext _repoContext;
+        private readonly BeautyShopDbContext _repoContext;
 
         private IBrandRepository _brandRepository;
 
         private ICategoryRepository _categoryRepository;
 
         private IProductRepository _productRepository;
-
         public IBrandRepository Brand
         {
-            get
-            {
-                if (_brandRepository == null)
-                {
-                    _brandRepository = new BrandRepository(_repoContext);
-                }
-                return _brandRepository;
-            }
+            get => _brandRepository ??= new BrandRepository(_repoContext);
         }
         public ICategoryRepository Category
         {
-            get
-            {
-                if (_categoryRepository == null)
-                {
-                    _categoryRepository = new CategoryRepository(_repoContext);
-                }
-                return _categoryRepository;
-            }
+            get => _categoryRepository ??= new CategoryRepository(_repoContext);
         }
         public IProductRepository Product
         {
-            get
-            {
-                if (_productRepository == null)
-                {
-                    _productRepository = new ProductRepository(_repoContext);
-                }
-                return _productRepository;
-            }
+            get => _productRepository ??= new ProductRepository(_repoContext);
         }
-
         public RepositoryWrapper(BeautyShopDbContext repositoryContext)
         {
             _repoContext = repositoryContext;

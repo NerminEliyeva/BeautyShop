@@ -13,7 +13,7 @@ namespace BeautyShop.DAL.Migrations
 {
     [DbContext(typeof(BeautyShopDbContext))]
     [Migration("20230501224609_first")]
-    partial class first
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

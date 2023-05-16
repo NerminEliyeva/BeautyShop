@@ -15,5 +15,7 @@ namespace BeautyShop.Services.Interfaces
         Task<BaseResponseModel<bool>> AddBrand(BrandDto brand);
         Task<BaseResponseModel<bool>> DeleteCategory(int categoryId);
         Task<BaseResponseModel<bool>> DeleteBrand(int brandId);
+        Task<BaseResponseModel<List<CategoryDto>>> GetAllCategories();
+        Task<BaseResponseModel<List<Brand>>> GetAllBrands();
     }
 }

@@ -4,6 +4,8 @@ using BeautyShop.Models.Entitties;
 using BeautyShop.Models.Request;
 using BeautyShop.Models.Response;
 using BeautyShop.Services.Interfaces;
+using Mapster;
+using MapsterMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +17,10 @@ namespace BeautyShop.Services
     public class BeautyShopService : IBeautyShopService
     {
         private readonly IRepositoryWrapper _repository;
-        public BeautyShopService(IRepositoryWrapper repository)
+        private readonly IMapper _mapper;
+        public BeautyShopService(IMapper mapper,IRepositoryWrapper repository)
         {
+            _mapper = mapper;
             _repository = repository;
         }
         public async Task<BaseResponseModel<bool>> AddCategory(CategoryDto category)
@@ -38,18 +42,18 @@ namespace BeautyShop.Services
                 };
 
                 await _repository.Category.Add(newCategory);
-                 _repository.Save();
+                _repository.Save();
 
                 result.IsSuccess = true;
                 result.Obj = true;
                 result.Message = "Uğurlu əməliyyat";
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 result.IsSuccess = false;
                 result.Obj = false;
-                result.Message = "Xəta baş verdi";
+                result.Message = "Xəta baş verdi" + ex.ToString();
                 return result;
             }
         }
@@ -79,11 +83,11 @@ namespace BeautyShop.Services
                 result.Message = "Uğurlu əməliyyat";
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 result.IsSuccess = false;
                 result.Obj = false;
-                result.Message = "Xəta baş verdi";
+                result.Message = "Xəta baş verdi" + ex.ToString();
                 return result;
             }
         }
@@ -121,11 +125,11 @@ namespace BeautyShop.Services
                 result.Message = "Kateqoriya tapılmadı";
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 result.IsSuccess = false;
                 result.Obj = false;
-                result.Message = "Xəta baş verdi";
+                result.Message = "Xəta baş verdi" + ex.ToString();
                 return result;
             }
         }
@@ -163,13 +167,75 @@ namespace BeautyShop.Services
                 result.Message = "Brend tapılmadı";
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 result.IsSuccess = false;
                 result.Obj = false;
-                result.Message = "Xəta baş verdi";
+                result.Message = "Xəta baş verdi" + ex.ToString();
                 return result;
             }
+        }
+        public async Task<BaseResponseModel<List<CategoryDto>>> GetAllCategories()
+        {
+            var model = new BaseResponseModel<List<CategoryDto>>();
+            var categories = await _repository.Category.GetAll();
+         
+            var dto = _mapper.Map<List<CategoryDto>>(categories);
+            //foreach (var item in categories)
+            //{
+            //    dto.Add(new CategoryDto
+            //    {
+            //   CategoryId = item.CategoryId,
+            //        CategoryName = item.CategoryName
+            //    });
+            //}
+
+            try
+            {
+                if (!dto.Any())
+                {
+                    model.IsSuccess = false;
+                    model.Message = "Məlumat tapılmadı";
+                    return model;
+                }
+                model.Obj = dto;
+                model.IsSuccess = true;
+                model.Message = "Əməliyyat uğurludur";
+                return model;
+            }
+            catch (Exception ex)
+            {
+                model.IsSuccess = false;
+                model.Message = "Xəta baş verdi" + ex.ToString();
+                return model;
+            }
+        }
+        public async Task<BaseResponseModel<List<Brand>>> GetAllBrands()
+        {
+            var model = new BaseResponseModel<List<Brand>>();
+            var result = await _repository.Brand.GetAll();
+            try
+            {
+                if (!result.Any())
+                {
+
+                    model.IsSuccess = false;
+                    model.Message = "Məlumat tapılmadı";
+                    return model;
+                }
+                model.Obj = (List<Brand>)result;
+                model.IsSuccess = true;
+                model.Message = "Əməliyyat uğurludur";
+                return model;
+            }
+            catch (Exception ex)
+            {
+
+                model.IsSuccess = false;
+                model.Message = "Xəta baş verdi" + ex.ToString();
+                return model;
+            }
+
         }
     }
 }

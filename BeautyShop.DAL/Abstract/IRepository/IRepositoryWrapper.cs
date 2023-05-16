@@ -11,6 +11,6 @@ namespace BeautyShop.DAL.Abstract.IRepository
         IBrandRepository Brand { get; }
         ICategoryRepository Category { get; }
         IProductRepository Product { get; }
-       int Save();
+        int Save();
     }
 }

@@ -22,20 +22,35 @@ namespace BeautyShop.API.Controllers
         {
             return await _beautyShopService.AddCategory(category);
         }
+
         [HttpPost("AddBrand")]
         public async Task<BaseResponseModel<bool>> AddBrand(BrandDto brand)
         {
             return await _beautyShopService.AddBrand(brand);
         }
+
         [HttpPost("DeleteCategory")]
         public async Task<BaseResponseModel<bool>> DeleteCategory(int categoryId)
         {
             return await _beautyShopService.DeleteCategory(categoryId);
         }
+
         [HttpPost("DeleteBrand")]
         public async Task<BaseResponseModel<bool>> DeleteBrand(int brandId)
         {
             return await _beautyShopService.DeleteCategory(brandId);
+        }
+
+        [HttpGet("GetAllCategories")]
+        public async Task<BaseResponseModel<List<CategoryDto>>> GetAllCategories()
+        {
+            return await _beautyShopService.GetAllCategories();
+        }
+
+        [HttpGet("GetAllBrands")]
+        public async Task<BaseResponseModel<List<Brand>>> GetAllBrands()
+        {
+            return await _beautyShopService.GetAllBrands();
         }
     }
 }
