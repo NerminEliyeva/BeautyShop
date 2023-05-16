@@ -19,10 +19,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddTransient<IBeautyShopService, BeautyShopService>();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddDbContext<BeautyShopDbContext>(_ => _.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectionString"]));
-var app = builder.Build();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+var app = builder.Build(); 
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

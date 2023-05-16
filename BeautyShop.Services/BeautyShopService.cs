@@ -1,16 +1,11 @@
-﻿using BeautyShop.DAL.Abstract.IRepository;
+﻿using AutoMapper;
+using BeautyShop.DAL.Abstract.IRepository;
 using BeautyShop.DAL.Concrete.Repository;
 using BeautyShop.Models.Entitties;
 using BeautyShop.Models.Request;
 using BeautyShop.Models.Response;
 using BeautyShop.Services.Interfaces;
-using Mapster;
-using MapsterMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BeautyShop.Services
 {
@@ -181,15 +176,6 @@ namespace BeautyShop.Services
             var categories = await _repository.Category.GetAll();
          
             var dto = _mapper.Map<List<CategoryDto>>(categories);
-            //foreach (var item in categories)
-            //{
-            //    dto.Add(new CategoryDto
-            //    {
-            //   CategoryId = item.CategoryId,
-            //        CategoryName = item.CategoryName
-            //    });
-            //}
-
             try
             {
                 if (!dto.Any())
@@ -210,20 +196,22 @@ namespace BeautyShop.Services
                 return model;
             }
         }
-        public async Task<BaseResponseModel<List<Brand>>> GetAllBrands()
+        public async Task<BaseResponseModel<List<BrandDto>>> GetAllBrands()
         {
-            var model = new BaseResponseModel<List<Brand>>();
-            var result = await _repository.Brand.GetAll();
+            var model = new BaseResponseModel<List<BrandDto>>();
+            var brands = await _repository.Brand.GetAll();
+
+            var dto = _mapper.Map<List<BrandDto>>(brands);
+
             try
             {
-                if (!result.Any())
+                if (!dto.Any())
                 {
-
                     model.IsSuccess = false;
                     model.Message = "Məlumat tapılmadı";
                     return model;
                 }
-                model.Obj = (List<Brand>)result;
+                model.Obj = dto;
                 model.IsSuccess = true;
                 model.Message = "Əməliyyat uğurludur";
                 return model;

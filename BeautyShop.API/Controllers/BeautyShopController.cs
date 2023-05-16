@@ -48,7 +48,7 @@ namespace BeautyShop.API.Controllers
         }
 
         [HttpGet("GetAllBrands")]
-        public async Task<BaseResponseModel<List<Brand>>> GetAllBrands()
+        public async Task<BaseResponseModel<List<BrandDto>>> GetAllBrands()
         {
             return await _beautyShopService.GetAllBrands();
         }

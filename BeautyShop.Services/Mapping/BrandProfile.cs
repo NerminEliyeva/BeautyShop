@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeautyShop.Models.Mapping
+namespace BeautyShop.Services.Mapping
 {
-    public class CategoryProfile : Profile
+    public class BrandProfile : Profile
     {
-        public CategoryProfile()
+        public BrandProfile()
         {
-            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Brand, BrandDto>().ReverseMap();
         }
     }
 }
