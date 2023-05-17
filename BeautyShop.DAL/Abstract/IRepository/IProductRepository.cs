@@ -1,4 +1,4 @@
-﻿using BeautyShop.Models.Entitties;
+﻿using BeautyShop.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

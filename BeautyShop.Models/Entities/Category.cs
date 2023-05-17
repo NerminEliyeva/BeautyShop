@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeautyShop.Models.Entitties
+namespace BeautyShop.Models.Entities
 {
     public class Category
     {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BeautyShop.DAL.Abstract.IRepository;
 using BeautyShop.DAL.Concrete.Repository;
-using BeautyShop.Models.Entitties;
+using BeautyShop.Models.Entities;
 using BeautyShop.Models.Request;
 using BeautyShop.Models.Response;
 using BeautyShop.Services.Interfaces;
@@ -13,7 +13,7 @@ namespace BeautyShop.Services
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
-        public BeautyShopService(IMapper mapper,IRepositoryWrapper repository)
+        public BeautyShopService(IMapper mapper, IRepositoryWrapper repository)
         {
             _mapper = mapper;
             _repository = repository;
@@ -174,7 +174,7 @@ namespace BeautyShop.Services
         {
             var model = new BaseResponseModel<List<CategoryDto>>();
             var categories = await _repository.Category.GetAll();
-         
+
             var dto = _mapper.Map<List<CategoryDto>>(categories);
             try
             {
@@ -224,6 +224,61 @@ namespace BeautyShop.Services
                 return model;
             }
 
+        }
+        public async Task<BaseResponseModel<CategoryDto>> GetCategoryById(int id)
+        {
+            var model = new BaseResponseModel<CategoryDto>();
+            var category = await _repository.Category.GetById(id);
+
+            var result = _mapper.Map<CategoryDto>(category);
+            try
+            {
+                if (result is null)
+                {
+                    model.IsSuccess = false;
+                    model.Message = "Məlumat tapılmadı";
+                }
+                else
+                {
+                    model.IsSuccess = true;
+                    model.Obj = result;
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
+                model.IsSuccess = false;
+                model.Message = "Xəta baş verdi" + ex.ToString();
+                return model;
+            }
+        }
+
+        public async Task<BaseResponseModel<BrandDto>> GetBrandById(int id)
+        {
+            var model = new BaseResponseModel<BrandDto>();
+            var brand = await _repository.Brand.GetById(id);
+
+            var result = _mapper.Map<BrandDto>(brand);
+            try
+            {
+                if (result is null)
+                {
+                    model.IsSuccess = false;
+                    model.Message = "Məlumat tapılmadı";
+                }
+                else
+                {
+                    model.IsSuccess = true;
+                    model.Obj = result;
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
+                model.IsSuccess = false;
+                model.Message = "Xəta baş verdi" + ex.ToString();
+                return model;
+            }
         }
     }
 }

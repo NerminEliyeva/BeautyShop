@@ -25,7 +25,7 @@ namespace BeautyShop.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.Brand", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entities.Brand", b =>
                 {
                     b.Property<int>("BrandId")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace BeautyShop.DAL.Migrations
                     b.ToTable("Brand");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.Category", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entities.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace BeautyShop.DAL.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.Product", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,7 +99,7 @@ namespace BeautyShop.DAL.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.ProductReview", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entities.ProductReview", b =>
                 {
                     b.Property<int>("ReviewId")
                         .ValueGeneratedOnAdd()
@@ -130,14 +130,14 @@ namespace BeautyShop.DAL.Migrations
                     b.ToTable("ProductReview");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.ProductReview", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entities.ProductReview", b =>
                 {
-                    b.HasOne("BeautyShop.Models.Entitties.Product", null)
+                    b.HasOne("BeautyShop.Models.Entities.Product", null)
                         .WithMany("Reviews")
                         .HasForeignKey("ProductEntityId");
                 });
 
-            modelBuilder.Entity("BeautyShop.Models.Entitties.Product", b =>
+            modelBuilder.Entity("BeautyShop.Models.Entities.Product", b =>
                 {
                     b.Navigation("Reviews");
                 });

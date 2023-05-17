@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BeautyShop.Models.Entitties;
+using BeautyShop.Models.Entities;
 using BeautyShop.Models.Request;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace BeautyShop.Services.Mapping
     {
         public CategoryProfile()
         {
-            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>();
         }
     }
 }

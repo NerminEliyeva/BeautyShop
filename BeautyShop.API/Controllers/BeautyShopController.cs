@@ -1,4 +1,4 @@
-﻿using BeautyShop.Models.Entitties;
+﻿using BeautyShop.Models.Entities;
 using BeautyShop.Models.Request;
 using BeautyShop.Models.Response;
 using BeautyShop.Services.Interfaces;
@@ -51,6 +51,16 @@ namespace BeautyShop.API.Controllers
         public async Task<BaseResponseModel<List<BrandDto>>> GetAllBrands()
         {
             return await _beautyShopService.GetAllBrands();
+        }
+        [HttpGet("GetCategoryById")]
+        public async Task<BaseResponseModel<CategoryDto>> GetCategoryById(int id)
+        {
+            return await _beautyShopService.GetCategoryById(id);
+        }
+        [HttpGet("GetBrandById")]
+        public async Task<BaseResponseModel<BrandDto>> GetBrandById(int id)
+        {
+            return await _beautyShopService.GetBrandById(id);
         }
     }
 }

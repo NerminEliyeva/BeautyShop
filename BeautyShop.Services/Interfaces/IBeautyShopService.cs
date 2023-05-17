@@ -1,4 +1,4 @@
-﻿using BeautyShop.Models.Entitties;
+﻿using BeautyShop.Models.Entities;
 using BeautyShop.Models.Request;
 using BeautyShop.Models.Response;
 using System;
@@ -17,5 +17,7 @@ namespace BeautyShop.Services.Interfaces
         Task<BaseResponseModel<bool>> DeleteBrand(int brandId);
         Task<BaseResponseModel<List<CategoryDto>>> GetAllCategories();
         Task<BaseResponseModel<List<BrandDto>>> GetAllBrands();
+        Task<BaseResponseModel<CategoryDto>> GetCategoryById(int id);
+        Task<BaseResponseModel<BrandDto>> GetBrandById(int id);
     }
 }
