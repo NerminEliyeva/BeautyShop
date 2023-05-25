@@ -7,13 +7,13 @@ using BeautyShop.Models.Response;
 using BeautyShop.Services.Interfaces;
 
 
-namespace BeautyShop.Services
+namespace BeautyShop.Services.Services
 {
-    public class BeautyShopService : IBeautyShopService
+    public class CategoryBrandService : ICategoryBrandService
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
-        public BeautyShopService(IMapper mapper, IRepositoryWrapper repository)
+        public CategoryBrandService(IMapper mapper, IRepositoryWrapper repository)
         {
             _mapper = mapper;
             _repository = repository;
@@ -30,7 +30,6 @@ namespace BeautyShop.Services
                     result.Message = "Kateqoriya adı boş ola bilməz";
                     return result;
                 }
-
                 var newCategory = new Category
                 {
                     CategoryName = category.CategoryName,
@@ -252,7 +251,6 @@ namespace BeautyShop.Services
                 return model;
             }
         }
-
         public async Task<BaseResponseModel<BrandDto>> GetBrandById(int id)
         {
             var model = new BaseResponseModel<BrandDto>();

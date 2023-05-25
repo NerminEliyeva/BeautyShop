@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BeautyShop.Services.Interfaces
 {
-    public interface IBeautyShopService
+    public interface ICategoryBrandService
     {
         Task<BaseResponseModel<bool>> AddCategory(CategoryDto category);
         Task<BaseResponseModel<bool>> AddBrand(BrandDto brand);

@@ -4,6 +4,7 @@ using BeautyShop.DAL.Concrete.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeautyShop.DAL.Migrations
 {
     [DbContext(typeof(BeautyShopDbContext))]
-    partial class BeautyShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230518191430_AddNewPropertyToProduct")]
+    partial class AddNewPropertyToProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,13 +132,11 @@ namespace BeautyShop.DAL.Migrations
 
             modelBuilder.Entity("BeautyShop.Models.Entities.ProductReview", b =>
                 {
-                    b.HasOne("BeautyShop.Models.Entities.Product", "Product")
+                    b.HasOne("BeautyShop.Models.Entities.Product", null)
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("BeautyShop.Models.Entities.Product", b =>

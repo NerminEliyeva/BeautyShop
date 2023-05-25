@@ -1,8 +1,8 @@
 using BeautyShop.DAL.Abstract.IRepository;
 using BeautyShop.DAL.Concrete.Entity;
 using BeautyShop.DAL.Concrete.Repository;
-using BeautyShop.Services;
 using BeautyShop.Services.Interfaces;
+using BeautyShop.Services.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -18,7 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IRepositoryWrapper, RepositoryWrapper>();
-builder.Services.AddTransient<IBeautyShopService, BeautyShopService>();
+builder.Services.AddTransient<ICategoryBrandService, CategoryBrandService>();
 
 builder.Services.AddDbContext<BeautyShopDbContext>(_ => _.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectionString"]));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

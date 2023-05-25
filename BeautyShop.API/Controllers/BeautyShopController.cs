@@ -11,8 +11,8 @@ namespace BeautyShop.API.Controllers
     [ApiController]
     public class BeautyShopController : ControllerBase
     {
-        private readonly IBeautyShopService _beautyShopService;
-        public BeautyShopController(IBeautyShopService beautyShopService)
+        private readonly ICategoryBrandService _beautyShopService;
+        public BeautyShopController(ICategoryBrandService beautyShopService)
         {
             _beautyShopService = beautyShopService;
         }
@@ -52,11 +52,13 @@ namespace BeautyShop.API.Controllers
         {
             return await _beautyShopService.GetAllBrands();
         }
+
         [HttpGet("GetCategoryById")]
         public async Task<BaseResponseModel<CategoryDto>> GetCategoryById(int id)
         {
             return await _beautyShopService.GetCategoryById(id);
         }
+
         [HttpGet("GetBrandById")]
         public async Task<BaseResponseModel<BrandDto>> GetBrandById(int id)
         {
