@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeautyShop.Models.Entities
 {
@@ -12,15 +7,23 @@ namespace BeautyShop.Models.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int Brand { get; set; }
-        public int Category { get; set; }
+        public string Description { get; set; } = string.Empty;
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal DiscountPercent { get; set; }
         public int StockQuantity { get; set; }
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
-        public List<ProductReview> Reviews { get; set; }
+        public bool IsNew { get; set; }
+
+        public int BrandId { get; set; }
+        public Brand Brand { get; set; } = new Brand();
+
+        public int SubCategoryId { get; set; }
+        public SubCategory SubCategory { get; set; } = new SubCategory();
+
+        public List<ProductReview> Reviews { get; set; } = new List<ProductReview>();
+        public List<ShoppingCardDetail> ShoppingCardDetails { get; set; } = new List<ShoppingCardDetail>();
     }
 }

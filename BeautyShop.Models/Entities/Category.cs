@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 namespace BeautyShop.Models.Entities
 {
     public class Category
-    {
+    { 
         [Key]
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public List<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
     }
 }

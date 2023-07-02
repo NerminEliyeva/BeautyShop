@@ -10,12 +10,13 @@ namespace BeautyShop.Models.Entities
     public class ProductReview
     {
         [Key]
-        public int ReviewId { get; set; }
-        public int AuthorName { get; set; }
-        public string Content { get; set; }
+        public int Id { get; set; }
+        public int AuthorId { get; set; }
+        public string ReviewText { get; set; } = string.Empty;
         public int Rating { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime ReviewDate { get; set; }
+
         public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public Product Product { get; set; } = new Product();
     }
 }

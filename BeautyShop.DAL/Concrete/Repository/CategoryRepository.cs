@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BeautyShop.DAL.Concrete.Repository
 {
-    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
+    public class CategoryRepository : BaseRepository<SubCategory>, ICategoryRepository
     {
         public CategoryRepository(BeautyShopDbContext beautyShopDbContext) : base(beautyShopDbContext)
         {

@@ -22,52 +22,47 @@ namespace BeautyShop.Services.Services
             _repository = repository;
         }
 
-        public async Task<BaseResponseModel<bool>> AddProduct(ProductDto product)
-        {
-            var result = new BaseResponseModel<bool>();
-            try
-            {
-                if (string.IsNullOrWhiteSpace(product.Name) || string.IsNullOrEmpty(product.Name))
-                {
-                    result.IsSuccess = false;
-                    result.Obj = false;
-                    result.Message = " boş ola bilməz";
-                    return result;
-                }
-                if (string.IsNullOrWhiteSpace(product.Description) || string.IsNullOrEmpty(product.Description))
-                {
-                    result.IsSuccess = false;
-                    result.Obj = false;
-                    result.Message = "Kateqoriya adı boş ola bilməz";
-                    return result;
-                }
-                if (string.IsNullOrWhiteSpace(product.Brand) || string.IsNullOrEmpty(product.Brand))
-                {
-                    result.IsSuccess = false;
-                    result.Obj = false;
-                    result.Message = "Kateqoriya adı boş ola bilməz";
-                    return result;
-                }
-                var newCategory = new Category
-                {
-                    CategoryName = category.CategoryName,
-                };
+        //public async Task<BaseResponseModel<bool>> AddProduct(ProductDto product)
+        //{
+        //    var result = new BaseResponseModel<bool>();
+        //    try
+        //    {
+        //        if (string.IsNullOrWhiteSpace(product.Name) || string.IsNullOrEmpty(product.Name))
+        //        {
+        //            result.IsSuccess = false;
+        //            result.Obj = false;
+        //            result.Message = " boş ola bilməz";
+        //            return result;
+        //        }
+        //        if (string.IsNullOrWhiteSpace(product.Description) || string.IsNullOrEmpty(product.Description))
+        //        {
+        //            result.IsSuccess = false;
+        //            result.Obj = false;
+        //            result.Message = "Kateqoriya adı boş ola bilməz";
+        //            return result;
+        //        }
+        //        if (string.IsNullOrWhiteSpace(product.Brand) || string.IsNullOrEmpty(product.Brand))
+        //        {
+        //            result.IsSuccess = false;
+        //            result.Obj = false;
+        //            result.Message = "Kateqoriya adı boş ola bilməz";
+        //            return result;
+        //        }
+               
 
-                await _repository.Category.Add(newCategory);
-                _repository.Save();
-
-                result.IsSuccess = true;
-                result.Obj = true;
-                result.Message = "Uğurlu əməliyyat";
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.IsSuccess = false;
-                result.Obj = false;
-                result.Message = "Xəta baş verdi" + ex.ToString();
-                return result;
-            }
-        }
+               
+        //        result.IsSuccess = true;
+        //        result.Obj = true;
+        //        result.Message = "Uğurlu əməliyyat";
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.IsSuccess = false;
+        //        result.Obj = false;
+        //        result.Message = "Xəta baş verdi" + ex.ToString();
+        //        return result;
+        //    }
+        //}
     }
 }

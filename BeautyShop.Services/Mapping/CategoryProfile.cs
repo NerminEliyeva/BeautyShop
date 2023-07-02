@@ -13,7 +13,7 @@ namespace BeautyShop.Services.Mapping
     {
         public CategoryProfile()
         {
-            CreateMap<Category, CategoryDto>();
+            CreateMap<SubCategory, CategoryDto>();
         }
     }
 }

@@ -18,21 +18,21 @@ namespace BeautyShop.Services.Services
             _mapper = mapper;
             _repository = repository;
         }
-        public async Task<BaseResponseModel<bool>> AddCategory(CategoryDto category)
+        public async Task<BaseResponseModel<bool>> AddCategory(string category)
         {
             var result = new BaseResponseModel<bool>();
             try
             {
-                if (string.IsNullOrWhiteSpace(category.CategoryName) || string.IsNullOrEmpty(category.CategoryName))
+                if (string.IsNullOrWhiteSpace(category) || string.IsNullOrEmpty(category))
                 {
                     result.IsSuccess = false;
                     result.Obj = false;
                     result.Message = "Kateqoriya adı boş ola bilməz";
                     return result;
                 }
-                var newCategory = new Category
+                var newCategory = new SubCategory
                 {
-                    CategoryName = category.CategoryName,
+                    Name = category
                 };
 
                 await _repository.Category.Add(newCategory);
@@ -51,12 +51,12 @@ namespace BeautyShop.Services.Services
                 return result;
             }
         }
-        public async Task<BaseResponseModel<bool>> AddBrand(BrandDto brand)
+        public async Task<BaseResponseModel<bool>> AddBrand(string brand)
         {
             var result = new BaseResponseModel<bool>();
             try
             {
-                if (string.IsNullOrWhiteSpace(brand.BrandName) || string.IsNullOrEmpty(brand.BrandName))
+                if (string.IsNullOrWhiteSpace(brand) || string.IsNullOrEmpty(brand))
                 {
                     result.IsSuccess = false;
                     result.Obj = false;
@@ -66,7 +66,7 @@ namespace BeautyShop.Services.Services
 
                 var newBrand = new Brand
                 {
-                    BrandName = brand.BrandName
+                    Name = brand
                 };
 
                 await _repository.Brand.Add(newBrand);

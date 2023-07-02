@@ -18,13 +18,13 @@ namespace BeautyShop.API.Controllers
         }
 
         [HttpPost("AddCategory")]
-        public async Task<BaseResponseModel<bool>> AddCategory(CategoryDto category)
+        public async Task<BaseResponseModel<bool>> AddCategory(string category)
         {
             return await _beautyShopService.AddCategory(category);
         }
 
         [HttpPost("AddBrand")]
-        public async Task<BaseResponseModel<bool>> AddBrand(BrandDto brand)
+        public async Task<BaseResponseModel<bool>> AddBrand(string brand)
         {
             return await _beautyShopService.AddBrand(brand);
         }

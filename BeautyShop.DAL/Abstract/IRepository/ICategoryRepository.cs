@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BeautyShop.DAL.Abstract.IRepository
 {
-    public interface ICategoryRepository : IBaseRepository<Category> 
+    public interface ICategoryRepository : IBaseRepository<SubCategory> 
     {
     }
 }

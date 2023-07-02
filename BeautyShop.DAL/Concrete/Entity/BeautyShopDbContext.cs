@@ -15,8 +15,12 @@ namespace BeautyShop.DAL.Concrete.Entity
         }
 
         public DbSet<Brand> Brand { get; set; }
+        public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductReview> ProductReview { get; set; }
+        public DbSet<OrderStatus> OrderStatus { get; set; }
+        public DbSet<ShoppingCard> ShoppingCard { get; set; }
+        public DbSet<ShoppingCardDetail> ShoppingCardDetail { get; set; }
     }
 }
